@@ -23,7 +23,7 @@ client.connect(err => {
     blogsCollection.insertOne(newBlog)
       .then(result => {
         console.log('inserted', result.insertedCount)
-        res.send(result.insertedCount > 0)
+        res.redirect('/')
       })
   })
 
@@ -41,13 +41,13 @@ client.connect(err => {
       })
   })
 
-
-
-
-
-
-
-
+  app.delete('/delete/:id', (req, res) => {
+    blogsCollection.deleteOne({ _id: ObjectId(req.params.id) })
+      .then(result => {
+        console.log(result)
+        res.send(result)
+      })
+  })
 
 });
 
