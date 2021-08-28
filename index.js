@@ -12,10 +12,10 @@ app.use(cors());
 app.use(bodyParser.json())
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.clvrh.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
-console.log(uri)
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 client.connect(err => {
   const blogsCollection = client.db("retroBlog").collection("blogs");
+  const commentsCollection = client.db("retroBlog").collection("comments");
   console.log('database connected')
 
   app.post('/addBlog', (req, res) => {
@@ -46,6 +46,22 @@ client.connect(err => {
       .then(result => {
         console.log(result)
         res.send(result)
+      })
+  });
+
+  app.post('/addComment', (req, res) => {
+    const newComment = req.body;
+    commentsCollection.insertOne(newComment)
+      .then(result => {
+        res.send(result)
+        console.log('inserted', result.insertedId)
+      })
+  });
+
+  app.get('/comments', (req, res) => {
+    commentsCollection.find()
+      .toArray((err, events) => {
+        res.send(events)
       })
   })
 
