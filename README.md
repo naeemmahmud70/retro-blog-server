@@ -10,5 +10,6 @@
 - Git
 - Heroku
 
-###  `Website Link :` [Live Site](https://royal-furniture-6905b.firebaseapp.com/)
-###  `Client Side Repo :` [Github](https://github.com/naeemmahmud70/Royal-furniture-server)
+###  `Demo Video Link :` [Demo](https://youtu.be/jIFSBbCjdwk)
+###  `Website Link :` [Live Site](https://blognet370.netlify.app/)
+###  `Client Side Repo :` [Github](https://github.com/naeemmahmud70/Retro-blog-client)
